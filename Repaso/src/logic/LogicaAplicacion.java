@@ -45,40 +45,26 @@ public class LogicaAplicacion implements Serializable{
 		return partidos;
 	}
 	
-	public void abrirI() throws IOException{
+	public void cargarFichero()  throws IOException, ClassNotFoundException{
 		//Abro el fichero
-				fileI=new FileInputStream(NOMBRE_FICHERO);
-				input = new ObjectInputStream(fileI);
-	}
-	
-	public void cerrarI() throws IOException{
+		fileI=new FileInputStream(NOMBRE_FICHERO);
+		input = new ObjectInputStream(fileI);
+		if(input!=null)
+			partidos= (LinkedList<Partido>) input.readObject();
 		//Cierro fichero
 		if(input!=null)
 			input.close();
 	}
-	
-	public void cargarFichero()  throws IOException, ClassNotFoundException{
-		abrirI();
-		if(input!=null)
-			partidos= (LinkedList<Partido>) input.readObject();
-		cerrarI();
-	}
-	public void abrirO() throws IOException{
+
+	public void guardarEnFichero() throws IOException{
 		//Abro el fichero
-		fileO=new FileOutputStream(NOMBRE_FICHERO);
+		fileO=new FileOutputStream(NOMBRE_FICHERO,false);
 		output = new ObjectOutputStream(fileO);
-	}
-	
-	public void cerrarO() throws IOException{
+		if(output!=null)
+			output.writeObject(partidos);
 		//Cierro fichero
 		if(output!=null)
 			output.close();
-	}
-	public void guardarEnFichero() throws IOException{
-		abrirO();
-		if(output!=null)
-			output.writeObject(partidos);
-		cerrarO();
 	}
 	
 	public LinkedList<Partido> getPartidos(){

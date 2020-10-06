@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Partidos {
-	String format = "MM/dd/yyyy";
+	private String format = "MM/dd/yyyy";
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -18,6 +18,7 @@ public class Partidos {
 		SimpleDateFormat fecha= new SimpleDateFormat("dd/MM/yyyy");
 		LogicaAplicacion logica= new LogicaAplicacion();
 		Partido p=new Partido();
+		int opc=0;
 		
 		try {
 			logica.cargarFichero();
@@ -28,7 +29,7 @@ public class Partidos {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		int opc=0;
+
 		do {
 			menu();
 			opc=Integer.parseInt(imp.nextLine());
@@ -76,6 +77,7 @@ public class Partidos {
 					System.out.println();
 					break;
 				case 4:
+					//listaPartidosOrdenados("metodo");
 					break;
 				case 5:
 					break;
@@ -106,14 +108,20 @@ public class Partidos {
 	}
 	
 	public static void mostrarListaPartidos(List <Partido> lista) {
-		int tam=lista.size();
-		Partido p;
-		for(int i=0;i<tam;i++){
-			p=lista.get(i);
-			System.out.println("L: "+p.getEqLocal()+" V: "
-			+p.getEqVisitante()+" R: "+p.getResultado()+" D:"
-			+p.getDivision()+" F: "+p.getFecha()+"\n");
+		if(!lista.isEmpty()) {
+			Partido p;
+			for(int i=0;i<lista.size();i++){
+				p=lista.get(i);
+				System.out.println(
+				"L: "+p.getEqLocal()
+				+" V: "+p.getEqVisitante()
+				+" R: "+p.getResultado()
+				+" D:"+p.getDivision()
+				+" F: "+p.getFecha());
+			}
 		}
+		else
+			System.out.println("La lista esta vacia");
 	}
 
 }
