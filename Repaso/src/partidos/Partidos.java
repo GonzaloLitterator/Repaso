@@ -95,13 +95,14 @@ public class Partidos {
 	}
 	
 	public static void menu() {
-		System.out.println("------------ MENU ---------------"
+		System.out.println("-------------- MENU -----------------"
 				+ "\n 1- Dar de alta un nuevo partido."
 				+ "\n 2- Mostar listado."
 				+ "\n 3- Borrado de un partido."
 				+ "\n 4- Mostrar los partidos ordenados."
 				+ "\n 5- Mostrar partidos de una división."
-				+ "\n 6- Salir y guardar.");
+				+ "\n 6- Salir y guardar."
+				+ "\n -------------------------------------" );
 	}
 	
 	public static void mostrarListaPartidos(List <Partido> lista) {
