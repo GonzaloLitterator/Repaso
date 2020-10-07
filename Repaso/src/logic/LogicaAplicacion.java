@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import beans.Partido;
 
@@ -28,17 +29,29 @@ public class LogicaAplicacion implements Serializable{
 	
 	public Partido borradoPartido(int Index) {
 		Partido Borrado=null;
-		if (Index>0 && Index<partidos.size()+1) {
+		System.out.println(Index<partidos.size());
+		if (Index>0 && Index<partidos.size()) {
 			Index--;
-			System.out.println(Borrado=partidos.get(Index));
+			Borrado=partidos.get(Index);
 			partidos.remove(Index);
 		}
 		return Borrado;
 	}
 	
 	public LinkedList<Partido> listaPartidosOrdenados(String metodo){
-		Collections.sort(partidos);
-		return partidos;
+		LinkedList<Partido> copia= new LinkedList<>(partidos);
+		if (metodo.equalsIgnoreCase("Ascendente"))
+			Collections.sort(copia);
+		else {
+			Collections.sort(copia, new Comparator<Partido>(){
+				@Override
+				public int compare(Partido o1, Partido o2) {
+					return o2.getFecha().compareTo(o1.getFecha());
+				}
+			});
+		}
+			
+		return copia;
 	}
 	
 	public LinkedList<Partido> listaPartidosDivision(Partido.Divisiones d){

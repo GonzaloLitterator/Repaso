@@ -74,10 +74,11 @@ public class Partidos {
 				case 3:
 					System.out.println("Introduce el indice de la lista del partido a borrar");
 					p=logica.borradoPartido(Integer.parseInt(imp.nextLine()));
-					System.out.println();
+					System.out.println(p);
 					break;
 				case 4:
-					//listaPartidosOrdenados("metodo");
+					System.out.println("Introduce el indice de la lista del partido a borrar");
+					mostrarListaPartidos(logica.listaPartidosOrdenados(imp.nextLine()));
 					break;
 				case 5:
 					break;
